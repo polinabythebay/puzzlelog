@@ -1,0 +1,144 @@
+Reversing a Linked List
+
+//Given a pointer/reference to the head of a singly linked list, reverse it and return the pointer/reference to the head of a reversed linked list 
+
+A-> B-> C -> null 
+Head = A
+
+Change to 
+
+C -> B-> A -> null
+Head = C
+
+
+##################################
+//Solution 1: Recursively 
+##################################
+
+The recursive version of this problem uses a stack. At runtime, the program execution frames are allocated into stack memory and this solution can potentially run out of memory and have a stack overflow error for very large linked lists (with a billion elts or so). 
+
+//Strategy:
+We don't need to explictly track the last node; the next pointer in the current node is already pointing to the last node.
+We recursively visit each node in a LL until we reach the last node. The "recursive head" will stay with the last node and return it as the first. Thus the last node becomes the new head of the list. 
+
+On the return path when the recursion traces back, we need to change the pointers so that the nodes are reversed. This is where we use our "head" node. We want the last node to point to the one going before it. Another way to say it: each node is going to append itself to the end of the almost reverse linked list. 
+
+Psuedocode:
+
+HeadNode = current node pointing to head of the list
+program reverseRecursive( HeadNode ){
+	If the HeadNode is null (list is null) or if HeadNode.next is null (list has only 1 elt) then you just return it and stop the recursion
+
+	Otherwise:
+	We recursively move the head down the list until we get the node that is pointing to null. This "recursively moved down head" is the "recursive head"
+	On the way back we want to do two things:
+		Tail Recursion Steps:
+		1. We want to have the last node point to the one going before it
+			We use HeadNode to indicate this
+		2. We want the one going before it to point to null
+			We use HeadHead to indicate this
+
+	Once our tail recursion steps are complete, we return the "recursive head" that is now pointing to the front of the list.
+}
+
+Program walk through:
+
+Frame #1:
+HeadNode = A
+RecursiveNode = A
+A-> B-> C-> null
+
+Frame #2: 
+HeadNode = B
+RecursiveNode = B
+A-> B-> C-> null
+
+Frame #3:
+HeadNode = C
+RecursiveNode = C
+A-> B-> C-> null
+
+Now that our HeadNode is C, so we need to walk back and perform our tail recursion by manipulating HeadNode. 
+
+Frame #3:
+We have A-> B-> C-> null, and we want Head.next.next to point to Head and Head.next to point to null. When HeadNode = C, Head.next.next is nothing (??) and Head.next is already null, so nothing happens. 
+
+HeadNode = C
+RecursiveNode = C
+
+Frame #2:
+HeadNode = B
+We want C to point to B and B to point to null. 
+
+B.next.next = B
+B.next = null
+
+This way we now have: C-> B -> null and A-> B
+
+Frame #1:
+
+On the next frame we have:
+
+HeadNode = A
+
+A.next.next = A
+A. next = null
+
+C-> B -> A -> null
+
+And we are done going through all of our frames. 
+
+Remarks:
+
+Runtime Complexity is Linear O(n): you have to visit every node
+Memory Complexity is Linear O(n)
+Note that memory complexity is not constant; this could be problematic if the linked list is millions of elements. 
+
+Recursion allows us to iterate through the linked list backwards. 
+This methods works with the "recursive head" because the stack frames for each function call are saved until we get to the end of the list, and then we unwind the stack frames one by one by going backwards, where each stack frame essentially represents one node in the list. 
+
+##################################
+//Solution 2: Iteratively 
+##################################
+
+//write up solution later
+
+We start reversing the list with the very first node. Writing a solution iteratively means we are using a loop to solve the problem: for, while, etc.
+
+Like the recursive solution, we have a base case: if our list is null or contains 1 element, we just return it.
+
+The iterative solution has two pointers and uses a temporary variable to move things around. 
+
+Psuedocode:
+
+program reverseIter (HeadNode){
+	
+If Node is null or pointing to null, return it and do nothing.
+
+Otherwise,
+Set a pointer A that ends up pointing to the reverse linked list.
+Set a pointer B that points to the remaining linked list.
+
+Then set A to A.next = null. This becomes the last node in our reverse linked list and A ends up moving along it until A gets to the new Head node.
+
+For each iteration, until B gets to null:
+	B moves forward one. The current node B is at becomes the head that A is pointing to. This is where you use a temporary variable to keep track of assigned pointers to variables nodes. 
+
+	Our loop terminates when B reaches null and by that point A is pointing to the last node which is now the head of our list and we are done.
+
+}
+
+Remarks:
+
+Runtime Complexity: Linear O(n)
+Memory Complexity: Constant O(1)
+
+
+
+
+
+
+
+
+
+
