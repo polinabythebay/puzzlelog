@@ -1,0 +1,71 @@
+//Polina Soshnin
+//May 4, 2014
+//Code Jam practice
+//Africa 2010 qualification round
+
+import java.util.*;
+
+
+public class StoreCredit{
+
+
+//credit c
+//list L of items
+//pick two items for list that add up to the credit
+
+//input
+//c- number of credit at store
+//number of items at store
+//list of prices
+
+//it's going to be in n^2 time
+
+  
+
+ public static void main(String[] args){
+
+   Scanner reader= new Scanner(System.in);
+    String line="";
+    
+    line= reader.nextLine();
+  
+    //first line is the number of test cases you have
+    
+    Integer num_tests= Integer.parseInt(line);
+    
+    //iterate through all the tests
+    for (int i=0; i<num_tests; i++){
+     
+      //first line is the credit
+      line= reader.nextLine();
+      Integer credit = Integer.parseInt(line);
+      
+      //number of items in your list
+      line= reader.nextLine();
+      Integer size_list = Integer.parseInt(line);
+      
+      //list of items represented by cost
+      line= reader.nextLine();
+      
+      String[] items = line.split("");
+      
+      //turn into an int array
+      int[] ints = new int[items.length];
+      for (int j=0; j < items.length; j++) {
+        ints[j] = Integer.parseInt(strings[j]);
+      }
+      
+      //call function
+      
+      int final_result=0;
+      
+      System.out.println("Case #"+Integer.toString(numtests+1)+":"+final_result);
+      
+      
+    }
+    
+  
+ }
+
+
+}
