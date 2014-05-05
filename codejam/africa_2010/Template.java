@@ -29,8 +29,18 @@ public class Template {
 			int numItems = in.nextInt();
 
 			//handle customized input from here
-			//write to output
-			//output(out, caseNum, output string);	
+			//write to output	
+
+
+			//String[] v2 = in.nextLine().split(" ");
+
+			//int[] ints = new int[items.length];
+      
+      		//for (int j=0; j < items.length; j++) {
+        	//	ints[j] = Integer.parseInt(items[j]);
+      		//}
+
+      		//output(out, i+1, output string);
 		}
 		//out.close();
 	}
