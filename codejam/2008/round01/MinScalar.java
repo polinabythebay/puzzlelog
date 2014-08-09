@@ -1,8 +1,8 @@
 
 /*@author: Polina Soshnin
-*@date: May 4 2014
-*@purpose: code jam practice: 2008 round1A
-* notes: need to make faster 
+*@date: Aug 6 2014
+*@purpose: Aspera Coding Challenge: New Grad SW
+* 
 */
 
 import java.util.*;
