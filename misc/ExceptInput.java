@@ -44,7 +44,7 @@ public class ExceptInput{
   
   
 /*
- * Helper class for QuestionThree.java 
+ * Helper class 
  * Creates a pair of two integers, the first 
  * of which is the input elt (known as "Key") 
  * and the second of which is the output elt
