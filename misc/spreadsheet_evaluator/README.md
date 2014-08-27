@@ -1,6 +1,6 @@
 ### Spreadsheet Evaluator
 
-This is a basic console spreadsheet evaluator. It's definitely not robust by any means.It takes input in the form of a CSV file and outputs it in CSV format. It performs four arthimetic operations (+,-,*,/) and can reference other cells in the data sheet. All calculations are done in postfix form. 
+This is a basic console spreadsheet evaluator. It's definitely not robust by any means. It takes input in the form of a CSV file and outputs it in CSV format. It performs four arthimetic operations (+,-,*,/) and can reference other cells in the data sheet. All calculations are done in postfix form. 
 
 Examples:
 
