@@ -5,7 +5,7 @@ This is my repo for coding puzzles I have worked on in the past that can be foun
 
 Exercises
 --------
-- Reverse a LinkedList (Iteratively and Recursively)
+- Reverse a LinkedList (iteratively and recursively)
 - Write a basic spreadsheet evaluator
 - Implement a circular buffer
 - Given a list of integers, write a program to output an integer-valued list of equal length such that the output elt at index i is the product of all input elts except for the input elt i
