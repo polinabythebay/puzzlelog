@@ -20,3 +20,7 @@ Code Jam
 Euler
 --------
 - [P1](https://github.com/psoshnin/puzzlelog/tree/master/euler/p1)
+
+Matasano Cryptography Challenges
+--------
+See my other repo [here](https://github.com/psoshnin/matasano-crypto-challenges)
