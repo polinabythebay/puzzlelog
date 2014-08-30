@@ -85,10 +85,11 @@ public class SpreadSheet {
 
 		if (eval.length ==1){	
 			
-			//If cell reference
+			//If cell reference with multi cell referencing
 			if (eval[0].charAt(0) == '='){
+
 				String key = eval[0].substring(1);
-				result = sheet.get(key);
+				result = evalCellRef(key);
 				return result;
 
 			//If number 
@@ -98,25 +99,15 @@ public class SpreadSheet {
 
 			//If arithmetic operation
 		} else {
-			String first_num = eval[0].substring(1);
-			double i = Double.parseDouble(first_num);
-			double j = Double.parseDouble(eval[1]);
-			String op = eval[2];
+
+			//call multiple operation basic arithmetic
 
 			double num_eval = 0.0;
-			
-			if (op.equals("+")){
-				num_eval = i+j;
-			}
-			if (op.equals("*")){
-				num_eval = i*j;
-			}
-			if (op.equals("-")){
-				num_eval = i-j;
-			}
-			if (op.equals("/")){
-				num_eval = i/j;
-			}
+
+			num_eval = evalMultArith(eval);
+
+			// System.out.println("here's the result "+num_eval);
+
 			//remove zero if whole number 
 			if (Math.floor(num_eval) == num_eval) {
 				int k = (int)num_eval;
@@ -126,6 +117,87 @@ public class SpreadSheet {
 				result = Double.toString(num_eval);
 				return result;
 			}
+		}
+	}
+
+
+	/*
+	* Evaluates multiple operation arithmetic
+	*/
+
+	public double evalMultArith(String[] str){
+		double result = 0.0;
+
+		//if the beginning number has an equals
+		if (str[0].charAt(0) == '='){
+			str[0] = str[0].substring(1);
+		}
+
+		//it's a number
+		if (str.length ==1){
+			result = Double.parseDouble(str[0]);
+			return result;
+		} else {
+			//evaluate it once and then keep going 
+	
+			//if str[0] is cell reference, evaluate cell reference
+
+			double i = 0.0;
+
+			if (sheet.containsKey(str[0])){
+				String cellref = evalCellRef(str[0]);
+				i = Double.parseDouble(cellref);
+			} else {
+				i = Double.parseDouble(str[0]);
+			}
+
+			// double i = Double.parseDouble(str[0]);
+
+			String op = str[str.length-1];
+
+			String a1[] = Arrays.copyOfRange(str, 1, str.length-1);
+		
+			if (op.equals("+")){
+
+				result= i+(evalMultArith(a1));
+			}
+			if (op.equals("*")){
+				result= i*(evalMultArith(a1));
+			}
+			if (op.equals("-")){
+				result= i-(evalMultArith(a1));
+			}
+			if (op.equals("/")){
+				result= i/(evalMultArith(a1));
+			}
+			return result;
+		}
+	}
+
+
+	/*
+	* Evaluates a cell reference until it resolves to a number:
+	* Allows multi cell referencing
+	*/
+	public String evalCellRef(String str){
+		String result = str;
+
+		//format =A1 to A1
+		if (result.charAt(0) == '='){
+			result = result.substring(1);
+		}
+
+		//if string references another cell
+		if (sheet.containsKey(result)){
+			String cell = sheet.get(result);
+
+			//evaluate cell reference until you find a number
+			return evalCellRef(cell);
+
+		//if string doesn't reference another cell, it's a number
+		} else {
+			
+			return result;
 		}
 	}
 
@@ -141,10 +213,11 @@ public class SpreadSheet {
 					//output spreadsheet by row
 					ArrayList<String> row = new ArrayList<String>();
 					
-					for(char alpha='A';alpha<='Z';alpha++){
+					for(char alpha='A';alpha<='[';alpha++){
 			    		String next_key = alpha+Integer.toString(i);
 
 		        		if (sheet.containsKey(next_key)){
+		    
 		        			String result = evaluate(sheet.get(next_key));
 		        			row.add(result); 
 		        			
@@ -156,8 +229,6 @@ public class SpreadSheet {
 		        			break;
 		        		}
 
-		        		//BUG: need to address case where
-		        		//I have exactly 26 rows
 		        	}
 		        } else {
 		        	break;
