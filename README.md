@@ -26,3 +26,15 @@ Project Euler
 Matasano Cryptography Challenges
 --------
 See my other repo [here](https://github.com/psoshnin/matasano-crypto-challenges)
+
+What to find some other challenges to do yourself? Here's a list of places to start:
+
+- [Coderbyte](http://coderbyte.com/CodingArea/Challenges/): straightforward list of challenges of which some you will probably most certainly see at some point in interviewing, I would recommend starting here
+- [Rosalind](http://rosalind.info/problems/list-view/): learn bioinformatics through programming challenges
+- [Codility](https://codility.com/programmers/lessons/): lessons + timed challenges
+- [TalentBuddy](http://www.talentbuddy.co/practice): code on the go (has iOS app)
+- [CodeRust](http://coderust.com/): iOS app featuring practice problems + runtime analysis
+- [HackerRank](https://www.hackerrank.com/): programming contests
+- [TopCoder](http://www.topcoder.com/): more problems than you will ever be able to solve
+- [HackerEarth](http://www.hackerearth.com/): even more problems
+
